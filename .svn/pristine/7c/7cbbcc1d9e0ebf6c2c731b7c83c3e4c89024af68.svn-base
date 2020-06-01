@@ -1,0 +1,74 @@
+/* pages/my/my.wxss */
+.main {
+  padding-top: 160rpx;
+}
+
+.imageView {
+  width: 330rpx;
+  height: 250rpx;
+  margin: 0 auto;
+  margin-bottom: 16rpx;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.desc {
+  font-size:30rpx;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+  text-align: center;
+}
+
+.login {
+  width:300rpx;
+  height:88rpx;
+  background:linear-gradient(90deg,rgba(38,239,210,1) 0%,rgba(93,187,173,1) 100%);
+  border-radius:40px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+  line-height: 88rpx;
+}
+
+.bgc {
+  width: 100%;
+  height: 471rpx;
+  position: relative;
+  margin-bottom: 40rpx;
+}
+
+.avatarView {
+  position: absolute;
+  top: 91rpx;
+  left: 300rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.name {
+  position: absolute;
+  top: 281rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.class {
+  position: absolute;
+  top: 331rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}

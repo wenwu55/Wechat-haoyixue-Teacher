@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    
+    "pages/accessControl/accessControl",
+    
+    
+    "pages/director/director",
+    "pages/homework/homework",
+    "pages/homeworkDetail/homeworkDetail",
+    "pages/addHomework/addHomework",
+    "pages/classNotice/classNotice",
+    "pages/schoolNotice/schoolNotice",
+    "pages/noticeDetail/noticeDetail",
+    "pages/addNotice/addNotice",
+    "pages/studentLeave/studentLeave",
+    "pages/addLeave/addLeave",
+    "pages/approveLeave/approveLeave",
+    "pages/my/my",
+    "pages/bindPhone/bindPhone"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4B87FF",
+    "navigationBarTitleText": "湖南好易学",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#4B87FF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "家校互动",
+        "iconPath": "assets/ic_interaction_unselected.png",
+        "selectedIconPath": "assets/ic_interaction_selected.png"
+      },
+      {
+        "pagePath": "pages/director/director",
+        "text": "管理",
+        "iconPath": "assets/directorUnselected.png",
+        "selectedIconPath": "assets/directorSelected.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "assets/ic_my_unselected.png",
+        "selectedIconPath": "assets/ic_my_selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,15 @@
+/* pages/director/director.wxss */
+page {
+  padding-top: 17rpx;
+}
+
+.weui-cells {
+  background-color: #fff;
+}
+
+.weui-cell {
+  line-height: 102rpx;
+  color: #666666;
+  font-size: 30rpx;
+  padding: 0 24rpx;
+}

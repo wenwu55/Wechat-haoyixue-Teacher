@@ -1,0 +1,68 @@
+/* pages/addHomework/addHomework.wxss */
+page {
+  padding-top: 17rpx;
+  padding-bottom: 20rpx;
+}
+.weui-cell {
+  background-color: #fff;
+  border-bottom: 2rpx solid #F4F5F9;
+}
+
+.weui-cell__bd {
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.weui-cell__ft {
+  color: #333333;
+  font-size: 30rpx;
+}
+
+.commit {
+  width:600rpx;
+  height:88rpx;
+  background-color: #4B87FF;
+  border-radius:40rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Semibold,PingFangSC;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  line-height:88rpx;
+  margin: 40rpx auto 0;
+}
+
+.disabled {
+  background:rgba(207,206,206,1);
+  border: 1rpx solid #CFCECE;
+}
+
+.weui-cells {
+  padding: 0;
+  margin-top: 18rpx;
+}
+.weui-textarea {
+  height: 400rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+}
+
+.place-holder {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.weui-textarea-counter {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.cell {
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.weui-input {
+  color: #333;
+  padding-left: 40rpx;
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-cell": "../../components/cell/cell",
+    "mp-cells": "../../components/cells/cells",
+    "mp-form": "../../components/form/form",
+    "mp-uploader": "../../components/uploader/uploader"
+  },
+  "navigationBarTitleText": "新增作业"
+}

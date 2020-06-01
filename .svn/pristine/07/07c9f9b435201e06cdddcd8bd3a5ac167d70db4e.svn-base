@@ -1,0 +1,11 @@
+<!--pages/noticeDetail/noticeDetail.wxml-->
+<view class="article">
+  <view class="title">{{title}}</view>
+  <view class="date">{{createtime}}</view>
+
+  <view class="detail">{{content}}</view>
+
+  <!-- <view class="imageView">
+    <image src="../../assets/schoolNotice.png"></image>
+  </view> -->
+</view>

@@ -1,0 +1,37 @@
+<!--pages/addHomework/addHomework.wxml-->
+<view>
+  <picker bindchange="pickSubjectListChange" value="{{index}}" range="{{subjectList}}" range-key="text">
+    <view class="weui-cell weui-cell_example weui-cell_access">
+      <view class="weui-cell__bd">学科</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{subjectIndex ? subjectIndex.text : '请选择'}}</view>
+    </view>
+  </picker>
+
+  <picker bindchange="pickClassChange" value="{{index}}" range="{{classList}}" range-key="className">
+    <view class="weui-cell weui-cell_example weui-cell_access">
+      <view class="weui-cell__bd">班级</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{currentClass.className ? currentClass.className : '请选择'}}</view>
+    </view>
+  </picker>
+
+  <mp-cell title="标题" ext-class="cell">
+    <input class="weui-input" bindinput="changeTitle" value="{{title}}" placeholder="请输入标题" maxlength="20"/>
+  </mp-cell>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" value="{{content}}" placeholder-class="place-holder" maxlength="200" placeholder="请输入作业详情" bindinput="changeInput" />
+            <view class="weui-textarea-counter">{{length}}/200</view>
+        </view>
+    </view>
+  </view>
+
+  <mp-cells>
+      <mp-cell>
+          <mp-uploader bindfail="uploadError" binddelete="uploadDelete" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="5" title="图片上传" tips="上传作业图片详情"></mp-uploader>
+      </mp-cell>
+  </mp-cells>
+
+  <button class="commit" bindtap="submit">提交</button>
+</view>

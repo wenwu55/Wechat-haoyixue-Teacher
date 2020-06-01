@@ -1,0 +1,402 @@
+// pages/addLeave/addLeave.js
+const app = getApp()
+
+// 日期时间选择器相关数据
+const date = new Date();
+const years = [];
+const months = [];
+const days = [];
+const hours = [];
+const minutes = [];
+//获取年
+for (let i = 2019; i <= date.getFullYear() + 5; i++) {
+  years.push("" + i);
+}
+//获取月份
+for (let i = 1; i <= 12; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  months.push("" + i);
+}
+//获取日期
+for (let i = 1; i <= 31; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  days.push("" + i);
+}
+//获取小时
+for (let i = 0; i < 24; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  hours.push("" + i);
+}
+//获取分钟
+for (let i = 0; i < 60; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  minutes.push("" + i);
+}
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    schoolList: {},
+    currentClass: {},
+    studentList: [],
+    currentStudent: {},
+    // dateTime-picker
+    startTime: '',
+    endTime: '',
+    multiArray: [years, months, days, hours, minutes],
+    multiIndex: [0, 9, 16, 10, 17],
+    choose_year: '',
+    forContent: '',
+    length: 0
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(this.data.multiArray[0][0])
+    this.setData({
+      choose_year: this.data.multiArray[0][0]
+    })
+  },
+  //获取时间日期
+  bindMultiPickerChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log(e)
+    this.setData({
+      multiIndex: e.detail.value
+    })
+    const index = this.data.multiIndex;
+    const year = this.data.multiArray[0][index[0]];
+    const month = this.data.multiArray[1][index[1]];
+    const day = this.data.multiArray[2][index[2]];
+    const hour = this.data.multiArray[3][index[3]];
+    const minute = this.data.multiArray[4][index[4]];
+    // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
+    if (e.currentTarget.dataset.type == 'end') {
+      this.setData({
+        endTime: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+      })
+    } else {
+      this.setData({
+        startTime: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+      })
+    }
+    // console.log(this.data.time);
+  },
+  //监听picker的滚动事件
+  bindMultiPickerColumnChange: function (e) {
+    //获取年份
+    if (e.detail.column == 0) {
+      let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
+      console.log(choose_year);
+      this.setData({
+        choose_year
+      })
+    }
+    //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    if (e.detail.column == 1) {
+      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
+      let temp = [];
+      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
+        for (let i = 1; i <= 31; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
+        for (let i = 1; i <= 30; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 2) { //判断2月份天数
+        let year = parseInt(this.data.choose_year);
+        console.log(year);
+        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
+          for (let i = 1; i <= 29; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        } else {
+          for (let i = 1; i <= 28; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        }
+      }
+      console.log(this.data.multiArray[2]);
+    }
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    this.setData(data);
+  },
+
+  // 获取学校班级列表
+  getStudentList: function () {
+    const that = this
+    const userId = wx.getStorageSync('userId')
+    if (!userId) {
+      wx.showToast({
+        title: '请先绑定用户信息~',
+        icon: 'none'
+      })
+      setTimeout(function () {
+        wx.switchTab({
+          url: '../my/my',
+        })
+      }, 2000)
+    } else {
+      wx.requestProxy({
+        url: `${app.globalData.URL}forLeave/getClassByUserId`,
+        method: 'POST',
+        data: { userId: userId, type: 2 },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 0) {
+            that.setData({
+              schoolList: res.data.data
+            })
+          }
+        }
+      })
+    }
+  },
+
+  // 选择班级
+  bindClassChange: function (e) {
+    const that = this
+    const orgno = wx.getStorageSync('orgno')
+    const currentClass = that.data.schoolList.tscList[e.detail.value]
+    that.setData({
+      currentClass: currentClass
+    })
+    // 获取班级下面的学生
+    // wx.requestProxy({
+    //   url: `${app.globalData.URL}forLeave/getStuByClassId`,
+    //   method: 'POST',
+    //   data: {
+    //     classId: currentClass.classId,
+    //     className: currentClass.className,
+    //     stuName: ''
+    //   },
+    //   success: function(res) {
+    //     console.log(res)
+    //     if (res.data.code == 0) {
+    //       that.setData({
+    //         studentList: res.data.data
+    //       })
+    //     }
+    //   }
+    // })
+    wx.requestProxy({
+      url: `${app.globalData.URL}app/school/getSchoolDepartStudents`,
+      method: 'POST',
+      data: {
+        orgNo: orgno,
+        departId: currentClass.classId
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 1) {
+          that.setData({
+            studentList: res.data.data
+          })
+        }
+      }
+    })
+  },
+
+  // bindStudentChange
+  bindStudentChange: function (e) {
+    const that = this
+    const currentStudent = that.data.studentList[e.detail.value]
+    that.setData({
+      currentStudent: currentStudent
+    })
+  },
+
+  // textarea 
+  changeInput: function (e) {
+    const that = this
+    const length = e.detail.value.length
+    that.setData({
+      length: length,
+      forContent: e.detail.value
+    })
+  },
+
+  submit: function () {
+    const that = this
+    // 当前学校
+    if (!that.data.schoolList || !that.data.schoolList.schoolName) {
+      wx.showToast({
+        title: '学校绑定信息出错，请联系管理员处理！',
+        icon: 'none'
+      })
+      return false
+    }
+    // 当前班级
+    if (!that.data.currentClass || !that.data.currentClass.className) {
+      wx.showToast({
+        title: '请选择班级!',
+        icon: 'none'
+      })
+      return false
+    }
+    // 当前学生
+    if (!that.data.currentStudent) {
+      wx.showToast({
+        title: '请选择学生！',
+        icon: 'none'
+      })
+      return false
+    }
+    // 开始时间
+    if (!that.data.startTime) {
+      wx.showToast({
+        title: '请选择开始时间',
+        icon: 'none'
+      })
+      return false
+    }
+    // 结束时间
+    if (!that.data.endTime) {
+      wx.showToast({
+        title: '请选择结束时间',
+        icon: 'none'
+      })
+      return false
+    }
+    // content
+    if (that.data.length == 0) {
+      wx.showToast({
+        title: '请输入请假备注信息',
+        icon: 'none'
+      })
+      return false
+    }
+    // 时间判断
+    if (that.data.endTime <= that.data.startTime) {
+      wx.showToast({
+        title: '结束时间必须大于开始时间哦',
+        icon: 'none'
+      })
+      return false
+    }
+    console.log(that.data.currentStudent)
+    const param = {
+      approvalId: wx.getStorageSync('userId'),
+      physicalNo: that.data.currentStudent.card_physics_no,
+      startTime: that.data.startTime + ':00',
+      endTime: that.data.endTime + ':00',
+      type: 2,
+      forContent: that.data.forContent
+    }
+    console.log(param)
+    wx.requestProxy({
+      url: `${app.globalData.URL}forLeave/insertLeave`,
+      method: 'POST',
+      data: param,
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '提交成功！'
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getStudentList()
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

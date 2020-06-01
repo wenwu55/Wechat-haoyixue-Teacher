@@ -1,0 +1,72 @@
+<!--pages/accessControl/accessControl.wxml-->
+<view class="header">
+  <view class="dateView">
+    <view class="section">
+      <text>开始时间:</text>
+      <picker mode="date" value="{{start_date}}" start="2019-01-01" end="2030-12-30" bindchange="bindStartDateChange">
+        <view class="picker">
+          {{start_date}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="section">
+      <text>结束时间:</text>
+      <picker mode="date" value="{{end_date}}" start="2019-01-01" end="2030-12-30" bindchange="bindEndDateChange">
+        <view class="picker">
+          {{end_date}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="dateView">
+    <view class="section">
+      <text>任教班级:</text>
+      <picker bindchange="pickClassChange" value="{{index}}" range="{{schoolList.tscList}}" range-key="className">
+        <view class="picker">
+          {{currentClass.className ? currentClass.className : '请选择'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="section">
+      <text>学生名字:</text>
+      <picker bindchange="pickStudentChange" value="{{index}}" range="{{studentList}}" range-key="username">
+        <view class="picker">
+          {{currentStudent.username ? currentStudent.username : '请选择'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>
+<view class="main">
+  <view class="detail" wx:if="{{accessList.length > 0}}" wx:for="{{accessList}}" wx:key="{{index}}">
+    <image wx:if="{{item.picPath}}" src="{{item.picPath}}" class="photo"></image>
+    <image wx:if="{{!item.picPath}}" src="../../assets/nopictrue.png" class="photo"></image>
+    <view class="weui-flex">
+      <view class="weui-flex__item name">{{item.orgName}}</view>
+      <view class="weui-flex__item name textRight">{{item.consumerName}}
+        <image class="inOut" src="{{item.status == 10 ? '../../assets/in.png': '../../assets/out.png'}}"></image>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item number">卡号：{{item.cardPhyNo}}</view>
+      <view class="weui-flex__item number textRight">{{item.createTime}}</view>
+    </view>
+  </view>
+  <view class="page__bd" wx:if="{{accessLoading}}">
+    <view class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">{{loadText}}</view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="default" wx:if="{{accessList.length == 0}}">
+  <image class="nothing" src="../../assets/nothing.png"></image>
+  <view class="text">哎呀~还没有数据耶</view>
+  <view class="text">请切换时间或学生重试</view>
+</view>

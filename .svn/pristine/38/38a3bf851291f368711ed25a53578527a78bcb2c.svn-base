@@ -1,0 +1,7 @@
+<!--pages/approveLeave/approveLeave.wxml-->
+<view class="content">{{content}}</view>
+
+<view class="btnView">
+  <button class="btn" bindtap="refuse">拒绝</button>
+  <button class="btn agree" bindtap="agree">同意</button>
+</view>

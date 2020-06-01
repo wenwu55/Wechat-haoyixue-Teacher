@@ -1,0 +1,37 @@
+<!--pages/homeSchool/homeSchool.wxml-->
+<view>
+  <view bindtap="homework" class="card">
+    <image class="titleImage" src="../../assets/homeWork.png"></image>
+    <view class="right">
+      <view class="title">家庭作业</view>
+      <view class="english">Homework</view>
+    </view>
+  </view>
+</view>
+<view>
+  <view class="card" bindtap="classNotice">
+    <image class="titleImage" src="../../assets/classNotice.png"></image>
+    <view class="right">
+      <view class="title">班级通知</view>
+      <view class="english">Class Notice</view>
+    </view>
+  </view>
+</view>
+<view>
+  <view class="card" bindtap="studentLeave" url="../studentLeave/studentLeave">
+    <image class="titleImage" src="../../assets/studentLeave.png"></image>
+    <view class="right">
+      <view class="title">学生请假</view>
+      <view class="english">Student Leave</view>
+    </view>
+  </view>
+</view>
+<view>
+  <view class="card" bindtap="accessControl" url="../accessControl/accessControl">
+    <image class="titleImage" src="../../assets/accessControl.png"></image>
+    <view class="right">
+      <view class="title">门禁列表</view>
+      <view class="english">Access control record</view>
+    </view>
+  </view>
+</view>

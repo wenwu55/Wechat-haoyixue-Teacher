@@ -1,0 +1,45 @@
+/* pages/schoolNotice/schoolNotice.wxss */
+page {
+  padding-top: 16rpx;
+  padding-bottom: 88rpx;
+}
+
+.card {
+  padding: 24rpx;
+  background-color: #fff;
+  margin-bottom: 16rpx;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  line-height: 40rpx;
+  margin-bottom: 16rpx;
+}
+
+.desc {
+  font-size: 28rpx;
+  color: #666;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.title {
+  font-weight: 700;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.date {
+  text-align: right;
+  color: #999;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  font-size: 26rpx;
+}

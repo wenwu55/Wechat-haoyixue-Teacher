@@ -1,0 +1,55 @@
+/* pages/classCheck/classCheck.wxss */
+page {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.mycell {
+  display: flex;
+  line-height: 60rpx;
+  margin-bottom: 16rpx;
+}
+
+.babel {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 60rpx;
+}
+
+.value {
+  background-color: #fff;
+  width: 450rpx;
+  font-size: 28rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.search {
+  width: 600rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 24rpx auto 40rpx;
+  background-color: #4B87FF;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.card {
+  background-color: #fff;
+  padding: 24rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.head {
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  line-height: 54rpx;
+}

@@ -1,0 +1,77 @@
+<!--pages/studentLeave/studentLeave.wxml-->
+<view>
+  <view class="weui-navbar">
+    <view class="{{navbarStatus == 1 ? 'weui-navbar__item weui-bar__item_on' : 'weui-navbar__item'}}" bindtap="changeStatus" data-status="1">
+      未审批
+    </view>
+    <view class="{{navbarStatus == 2 ? 'weui-navbar__item weui-bar__item_on' : 'weui-navbar__item'}}" bindtap="changeStatus" data-status="2">
+      已审批
+    </view>
+  </view>
+
+  <view class="weui-tab__panel">
+    <view wx:if="{{navbarStatus == 1}}">
+      <view class="card" wx:for="{{leaveNotList}}" wx:key="{{index}}" bindtap="goDetail" data-content="{{item.forContent}}" data-forId="{{item.forId}}" data-name="{{item.name}}">
+        <view class="head">
+          <view class="createtime">{{item.createTime}}</view>
+          <view class="status {{item.forStatus == 0 ? 'no' : item.forStatus == 1 ? 'yes' : 'false'}}">{{item.forStatus == 0 ? '审批中': item.forStatus == 1 ? '已审批' : '已拒绝'}}</view>
+        </view>
+        <view class="time">
+          <view class="label">学生姓名：</view>
+          <view class="desc">{{item.name}}</view>
+        </view>
+        <view class="time">
+          <view class="label">开始时间：</view>
+          <view class="desc">{{item.startTime}}</view>
+        </view>
+        <view class="time">
+          <view class="label">结束时间：</view>
+          <view class="desc">{{item.endTime}}</view>
+        </view>
+        <view class="time">
+          <view class="label">请假事由：</view>
+          <view class="desc">{{item.forContent}}</view>
+        </view>
+      </view>
+
+      <view class="default" wx:if="{{leaveNotList.length == 0}}">
+        <image class="nothing" src="../../assets/nothing.png"></image>
+        <view class="text">哎呀~还没有数据耶</view>
+        <!-- <view class="text">请检查学生绑定信息后联系管理员</view> -->
+      </view>
+    </view>
+
+    <view wx:if="{{navbarStatus == 2}}">
+      <view class="card" wx:for="{{leaveList}}" wx:key="{{index}}">
+        <view class="head">
+          <view class="createtime">{{item.createTime}}</view>
+          <view class="status {{item.forStatus == 0 ? 'no' : item.forStatus == 1 ? 'yes' : 'false'}}">{{item.forStatus == 0 ? '审批中': item.forStatus == 1 ? '已审批' : '已拒绝'}}</view>
+        </view>
+        <view class="time">
+          <view class="label">学生姓名：</view>
+          <view class="desc">{{item.name}}</view>
+        </view>
+        <view class="time">
+          <view class="label">开始时间：</view>
+          <view class="desc">{{item.startTime}}</view>
+        </view>
+        <view class="time">
+          <view class="label">结束时间：</view>
+          <view class="desc">{{item.endTime}}</view>
+        </view>
+        <view class="time">
+          <view class="label">请假事由：</view>
+          <view class="desc">{{item.forContent}}</view>
+        </view>
+      </view>
+
+      <view class="default" wx:if="{{leaveList.length == 0}}">
+        <image class="nothing" src="../../assets/nothing.png"></image>
+        <view class="text">哎呀~还没有数据耶</view>
+        <!-- <view class="text">请检查学生绑定信息后联系管理员</view> -->
+      </view>
+    </view>
+  </view>
+</view>
+
+<button class="addBtn" bindtap="addLeave">新增请假</button>

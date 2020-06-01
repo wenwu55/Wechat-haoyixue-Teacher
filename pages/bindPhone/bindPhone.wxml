@@ -1,0 +1,9 @@
+<!--pages/bindPhone/bindPhone.wxml-->
+<view class="main" wx:if="{{!userInfo}}">
+  <view class="imageView">
+    <image src="../../assets/pic_notbound.png"></image>
+  </view>
+  <view class="desc">暂未绑定手机号</view>
+  <view class="desc">绑定手机号后可以使用更多功能哦~</view>
+  <button class="login" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机号</button>
+</view>
