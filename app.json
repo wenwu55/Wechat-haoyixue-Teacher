@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/classCheck/classCheck",
-    "pages/accessControl/accessControl",
     "pages/director/director",
+    "pages/accessControl/accessControl",
     "pages/homework/homework",
     "pages/homeworkDetail/homeworkDetail",
     "pages/addHomework/addHomework",
@@ -24,7 +24,8 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "selectedColor": "#4B87FF",
+    "selectedColor": "#2E51A0",
+    "ext-class": "default",
     "list": [
       {
         "pagePath": "pages/index/index",

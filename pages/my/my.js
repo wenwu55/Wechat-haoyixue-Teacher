@@ -52,6 +52,10 @@ Page({
    */
   onShow: function () {
     const role = wx.getStorageSync('roleId')
+    const phone = wx.getStorageSync("phone")
+    this.setData({
+      phone: phone
+    })
     console.log(role)
     if (role && role == 1) {
       wx.showToast({

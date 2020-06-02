@@ -11,7 +11,9 @@ Page({
     today: '',
     selectDate: '',
     attendanceList: {},
-    schoolName: ''
+    schoolName: '',
+    startTime: '',
+    endTime: ''
   },
 
   /**
@@ -46,9 +48,11 @@ Page({
         if (res.data.code == 0) {
           that.setData({
             schoolName: res.data.data.schoolName,
-            classList: res.data.data.tscList
+            classList: res.data.data.tscList,
+            currentClass: res.data.data.tscList[0]
           })
         }
+        that.search()
       }
     })
   },
@@ -57,9 +61,15 @@ Page({
   pickDateChange: function (e) {
     console.log(e)
     const that = this
-    that.setData({
-      selectDate: e.detail.value
-    })
+    if (e.target.dataset.type === "start") {
+      that.setData({
+        startTime: e.detail.value
+      })
+    } else {
+      that.setData({
+        endTime: e.detail.value
+      })
+    }
   },
 
   search: function () {
@@ -71,13 +81,12 @@ Page({
       })
       return false
     }
-    const time = that.data.selectDate ? that.data.selectDate : that.data.today
     const param = {
       departId: that.data.currentClass.classId,
       departName: that.data.currentClass.className,
       orgNo: that.data.orgno,
-      startTime: time + ' 00:00:00',
-      endTime: time + ' 23:59:59'
+      startTime: that.data.startTime ? that.data.startTime + ' 00:00:00' : that.data.today + ' 00:00:00',
+      endTime: that.data.endTime ? that.data.endTime + ' 23:59:59' : that.data.today + ' 23:59:59',
     }
     wx.requestProxy({
       url: app.globalData.URL + 'classAttendance/getClassAttendanceList',

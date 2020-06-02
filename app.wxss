@@ -3,7 +3,9 @@
 page {
   background-color: #F4F5F9;
 }
-
+.default {
+  color: red;
+}
 .textRight {
   text-align: right;
 }

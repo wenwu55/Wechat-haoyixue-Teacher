@@ -13,7 +13,6 @@
 <view class="default" wx:if="{{noticeList.length == 0}}">
   <image class="nothing" src="../../assets/nothing.png"></image>
   <view class="text">哎呀~还没有数据耶</view>
-  <view class="text">请检查学生绑定信息后联系管理员</view>
 </view>
 
 <button class="addBtn" bindtap="addNotice">新增通知</button>

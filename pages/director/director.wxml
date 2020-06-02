@@ -1,11 +1,19 @@
 <!--pages/director/director.wxml-->
-<view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_access" bindtap="schoolNotice" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">学校通知</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+<view>
+  <view class="card" bindtap="schoolNotice" url="../studentLeave/studentLeave">
+    <image class="titleImage" src="../../assets/schoolNotice.png"></image>
+    <view class="right">
+      <view class="title">学校通知</view>
+      <view class="english">Student Leave</view>
     </view>
-    <view class="weui-cell weui-cell_access" bindtap="classCheck" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">班级考勤</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+</view>
+<view>
+  <view class="card" bindtap="classCheck" url="../accessControl/accessControl">
+    <image class="titleImage" src="../../assets/classAttendance.png"></image>
+    <view class="right">
+      <view class="title">班级考勤</view>
+      <view class="english">Access control record</view>
     </view>
+  </view>
 </view>

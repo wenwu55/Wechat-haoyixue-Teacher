@@ -1,35 +1,41 @@
-<view class="mycell">
-  <view class="babel">学校： </view>
-  <view class="value">{{schoolName ? schoolName: ''}}</view>
-</view>
+<view class="page">
+  <view class="mycell">
+    <view class="babel">学校： </view>
+    <view class="value">{{schoolName ? schoolName: ''}}</view>
+  </view>
 
-<view class="mycell">
-  <view class="babel">班级： </view>
-  <picker bindchange="pickClassChange" value="{{index}}" range="{{classList}}" range-key="className">
-    <view class="value">{{currentClass.className ? currentClass.className: '请选择班级'}}</view>
-  </picker>
-</view>
+  <view class="mycell">
+    <view class="babel">班级： </view>
+    <picker bindchange="pickClassChange" value="{{index}}" range="{{classList}}" range-key="className">
+      <view class="value">{{currentClass.className ? currentClass.className: '请选择班级'}}</view>
+    </picker>
+  </view>
 
-<view class="mycell">
-  <view class="babel">日期： </view>
-  <picker mode="date" bindchange="pickDateChange" start="2019-01-01" end="{{today}}" value="{{selectDate}}">
-    <view class="value">{{selectDate ? selectDate: today}}</view>
-  </picker>
-</view>
+  <view class="mycell">
+    <view class="babel">日期： </view>
+    <picker mode="date" bindchange="pickDateChange" data-type="start" start="2020-01-01" end="{{today}}" value="{{selectDate}}">
+      <view class="chooseDate">{{startTime ? startTime: today}}</view>
+    </picker>
+    <view class="conant">-</view>
+    <picker mode="date" bindchange="pickDateChange" data-type="end" start="2020-01-01" end="{{today}}" value="{{selectDate}}">
+      <view class="chooseDate">{{endTime ? endTime: today}}</view>
+    </picker>
+  </view>
 
-<button class="search" bindtap="search">查询</button>
+  <button class="search" bindtap="search">查询</button>
+</view>
 
 <view class="card" wx:if="{{attendanceList.departName}}">
   <view class="head">{{attendanceList.departName}}</view>
   <view class="main">
-    <view><text>学生人数：</text>{{attendanceList.stuNum || 0}}</view>
-    <view><text>实到人数：</text>{{attendanceList.actualNum || 0}}</view>
-    <view><text>总出勤率：</text>{{attendanceList.attendanceRate || 0}}%</view>
+    <view><text class="text">学生人数：</text>{{attendanceList.stuNum || 0}}</view>
+    <view><text class="text">实到人数：</text>{{attendanceList.actualNum || 0}}</view>
+    <view><text class="text">总出勤率：</text>{{attendanceList.attendanceRate || 0}}%</view>
   </view>
   <view class="main">
-    <view><text>走读人数：</text>{{attendanceList.attendNum || 0}}</view>
-    <view><text>实到走读：</text>{{attendanceList.actualAttendNum || 0}}</view>
-    <view><text>走读出勤率：</text>{{attendanceList.attendRate || 0}}%</view>
+    <view><text class="text">走读人数：</text>{{attendanceList.attendNum || 0}}</view>
+    <view><text class="text">实到走读：</text>{{attendanceList.actualAttendNum || 0}}</view>
+    <view><text class="text">走读出勤率：</text>{{attendanceList.attendRate || 0}}%</view>
   </view>
 </view>
 

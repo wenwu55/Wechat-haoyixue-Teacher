@@ -14,57 +14,7 @@ App({
     const that = this
     // 登录
     wx.checkSession({
-      success(e) {
-        console.log(e)
-        const session_key = wx.getStorageSync('session_key')
-        if (!session_key) {
-          wx.login({
-            success(res) {
-              if (res.code) {
-                //发起网络请求
-                wx.requestProxy({
-                  url: that.globalData.URL + "miniProgram/getOpenId",
-                  method: "POST",
-                  data: {
-                    appId: 'wx83b40d404ab0f066',
-                    secret: '44f80e1b0d190339d2378209faee9d02',
-                    js_code: res.code,
-                    type: 2
-                  },
-                  success(response) {
-                    if (response.data.code == -1) {
-                      wx.showToast({
-                        title: response.data.message,
-                        icon: 'none'
-                      })
-                      return false
-                    }
-                    if (response.data.data.role && response.data.data.role == 1) {
-                      wx.showToast({
-                        title: '您还不是学校教师或管理员，请使用好易学家长端',
-                        icon: 'none'
-                      })
-                      return false
-                    }
-                    console.log(response)
-                    wx.setStorageSync("openid", response.data.data.openid)
-                    wx.setStorageSync("session_key", response.data.data.session_key)
-                    wx.setStorageSync("userId", response.data.data.userId)
-                    wx.setStorageSync("phone", response.data.data.phone)
-                    wx.setStorageSync("roleId", response.data.data.role)
-                    wx.setStorageSync("orgno", response.data.data.orgno)
-                  }
-                })
-                console.log(res)
-              } else {
-                console.log('登录失败！' + res.errMsg)
-              }
-            }
-          })
-        }
-      },
-      fail(e) {
-        console.log(e)
+      complete(e) {
         wx.login({
           success(res) {
             if (res.code) {
@@ -141,8 +91,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    URL: 'http://192.168.0.7:9666/'
+    // URL: 'http://192.168.0.7:9666/'
     // URL: 'https://duchengedu.com/wechatHyx/'
-    // URL: 'http://192.168.0.176:9666/'
+    URL: 'http://192.168.0.176:9666/'
   }
 })
