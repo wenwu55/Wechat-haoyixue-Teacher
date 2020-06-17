@@ -7,20 +7,34 @@ Page({
   data: {
     title: '',
     content: '',
-    createtime: ''
+    createtime: '',
+    imageList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    const imageList = options.pics.split(',')
+    console.log(imageList)
     this.setData({
       title: options.title,
       content: options.content,
-      createtime: options.createtime
+      createtime: options.createtime,
+      imageList: imageList
     })
   },
+  //预览单个图片
+  previewImage: function (e) {
+    let that = this;
+    let src = e.currentTarget.dataset.src;
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: that.data.imageList // =============重点重点=============
+    })
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

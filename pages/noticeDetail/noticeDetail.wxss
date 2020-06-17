@@ -1,7 +1,11 @@
 /* pages/noticeDetail/noticeDetail.wxss */
+page {
+  height: 100%;
+}
 .article {
   background-color: #fff;
   padding: 24rpx;
+  height: 100%;
 }
 
 .title {
@@ -35,4 +39,12 @@
 
 image {
   width: 100%;
+}
+
+
+.pics {
+  display: block;
+  margin-top: 20rpx;
+  width: 100%;
+  margin-bottom: 16rpx;
 }

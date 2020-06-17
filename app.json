@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/statistics/statistics",
     "pages/classCheck/classCheck",
     "pages/director/director",
     "pages/accessControl/accessControl",
@@ -25,7 +26,6 @@
   },
   "tabBar": {
     "selectedColor": "#2E51A0",
-    "ext-class": "default",
     "list": [
       {
         "pagePath": "pages/index/index",

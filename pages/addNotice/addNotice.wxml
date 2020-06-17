@@ -14,11 +14,17 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
         <view class="weui-cell__bd">
-            <textarea class="weui-textarea" value="{{content}}" placeholder-class="place-holder" maxlength="200" placeholder="请输入通知详情" bindinput="changeInput" />
-            <view class="weui-textarea-counter">{{length}}/200</view>
+            <textarea class="weui-textarea" value="{{content}}" placeholder-class="place-holder" maxlength="5000" placeholder="请输入通知详情" bindinput="changeInput" />
+            <view class="weui-textarea-counter">{{length}}/5000</view>
         </view>
     </view>
   </view>
+
+  <mp-cells>
+    <mp-cell>
+      <mp-uploader bindfail="uploadError" showDelete="true" binddelete="uploadDelete" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="5" title="图片上传" tips="上传通知图片详情"></mp-uploader>
+    </mp-cell>
+  </mp-cells>
 
   <button class="commit" bindtap="submit">提交</button>
 </view>

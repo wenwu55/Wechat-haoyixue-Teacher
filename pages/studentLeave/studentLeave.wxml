@@ -1,5 +1,5 @@
 <!--pages/studentLeave/studentLeave.wxml-->
-<view>
+<view style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">
   <view class="weui-navbar">
     <view class="{{navbarStatus == 1 ? 'weui-navbar__item weui-bar__item_on' : 'weui-navbar__item'}}" bindtap="changeStatus" data-status="1">
       未审批
@@ -74,4 +74,4 @@
   </view>
 </view>
 
-<button class="addBtn" bindtap="addLeave">新增请假</button>
+<button class="addBtn" bindtap="addLeave" style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">新增请假</button>

@@ -47,9 +47,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+    let isIphoneX = app.globalData.isIphoneX;
+    that.setData({
+      isIphoneX: isIphoneX
+    })
     wx.getSystemInfo({
       success: (res) => {
-        this.setData({
+        that.setData({
           pixelRatio: res.pixelRatio,
           windowHeight: res.windowHeight,
           windowWidth: res.windowWidth
@@ -108,6 +113,7 @@ Page({
           that.setData({
             workList: res.data.data.pageData
           })
+          console.log(res.data.data.pageData)
         }
       }
     })
@@ -118,7 +124,7 @@ Page({
     const dataset = e.currentTarget.dataset
     const createtime = dataset.createtime.substring(0, 10)
     wx.navigateTo({
-      url: `../homeworkDetail/homeworkDetail?title=${dataset.title}&pics=${dataset.pics}&content=${dataset.content}&createTime=${createtime}`
+      url: `../homeworkDetail/homeworkDetail?title=${dataset.title}&pics=${dataset.pics}&content=${dataset.content}&createTime=${createtime}&cur=${dataset.cur}`
     })
   },
 
@@ -140,7 +146,7 @@ Page({
    */
   onShow: function () {
     const that = this
-    that.getHomeworks(0)
+    that.getHomeworks(that.data.currentTab)
   },
 
   /**

@@ -3,6 +3,6 @@
   <view class="title">{{title}}</view>
   <view class="time">{{createTime}}</view>
   <view class="content">{{content}}</view>
-  <image class="pics" wx:for="{{imageList}}" wx:key="{{index}}" src="{{item}}"></image>
+  <image class="pics" wx:for="{{imageList}}" wx:key="{{index}}" src="{{item}}" bindtap='previewImage' data-src="{{item}}"></image>
 </view>
 

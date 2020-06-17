@@ -23,7 +23,7 @@
 }
 
 .main {
-  padding-top: 200rpx;
+  /* padding-top: 200rpx; */
 }
 
 .detail {

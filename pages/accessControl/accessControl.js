@@ -22,7 +22,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this.setData({
+      startTime: options.date.replace(RegExp('-', 'g'), '') + "000000",
+      endTime: options.date.replace(RegExp('-', 'g'), '') + "235959",
+      name: options.name
+    })
+    this.getAccessList()
   },
 
   /**
@@ -37,18 +43,17 @@ Page({
    */
   onShow: function () {
     // 获取当前时间
-    const date = new Date()
-    const year = date.getFullYear()
-    const month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : `0${(date.getMonth() + 1)}`
-    const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
-    const newDate = `${year}-${month}-${day}`
-    this.setData({
-      start_date: newDate,
-      end_date: newDate
-    })
-    // 获取班级列表
-    this.getClassList()
-    this.getAccessList()
+    // const date = new Date()
+    // const year = date.getFullYear()
+    // const month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : `0${(date.getMonth() + 1)}`
+    // const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+    // const newDate = `${year}-${month}-${day}`
+    // this.setData({
+    //   start_date: newDate,
+    //   end_date: newDate
+    // })
+    // // 获取班级列表
+    // this.getClassList()
   },
 
   // 获取班级列表
@@ -152,24 +157,24 @@ Page({
   getAccessList: function () {
     // 判断用户是否登录并绑定了学生
     const that = this
-    if (!that.data.currentStudent) {
-      that.setData({
-        accessList: []
-      })
-      return false
-    }
+    // if (!that.data.currentStudent) {
+    //   that.setData({
+    //     accessList: []
+    //   })
+    //   return false
+    // }
     const orgno = wx.getStorageSync('orgno')
     const userId = wx.getStorageSync('userId')
     // 计算时间  默认查询近四个月
-    const endRecordTime = `${that.data.end_date.replace(/-/g, '')} 23:59:59`
-    console.log(endRecordTime)
-    const startRecordTime = `${that.data.start_date.replace(/-/g, '')} 00:00:01`
+    // const endRecordTime = `${that.data.end_date.replace(/-/g, '')} 23:59:59`
+    // console.log(endRecordTime)
+    // const startRecordTime = `${that.data.start_date.replace(/-/g, '')} 00:00:01`
     // 请求门禁
     const param = {
-      consumerName: that.data.currentStudent.username,
+      consumerName: that.data.name,
       orgNo: orgno,
-      startRecordTime: startRecordTime,
-      endRecordTime: endRecordTime,
+      startRecordTime: that.data.startTime,
+      endRecordTime: that.data.endTime,
       pageSize: that.data.pageSize,
       pageNo: that.data.pageNo,
       userId: userId

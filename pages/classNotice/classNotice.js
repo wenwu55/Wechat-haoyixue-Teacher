@@ -13,7 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let isIphoneX = app.globalData.isIphoneX;
+    this.setData({
+      isIphoneX: isIphoneX
+    })
   },
   
   querySchoolNotice: function () {
@@ -33,15 +36,10 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.data.code == 1) {
-          if (res.data.data && res.data.data.pageData) {
-            res.data.data.pageData.forEach(item => {
-              const date = new Date(item.createtime).toJSON()
-              item.createtime = new Date(+new Date(date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-            })
-          }
           that.setData({
             noticeList: res.data.data.pageData
           })
+          console.log(res.data.data.pageData)
         }
       }
     })
@@ -57,8 +55,9 @@ Page({
   // 查看详情
   viewDetail: function (e) {
     const dataset = e.currentTarget.dataset
+    console.log(dataset.createtime)
     wx.navigateTo({
-      url: `../noticeDetail/noticeDetail?title=${dataset.title}&createtime=${dataset.createtime}&content=${dataset.content}`,
+      url: `../noticeDetail/noticeDetail?title=${dataset.title}&createtime=${dataset.createtime}&content=${dataset.content}&pics=${dataset.pics}`,
     })
   },
 

@@ -1,52 +1,14 @@
 // pages/addLeave/addLeave.js
 const app = getApp()
 
-// 日期时间选择器相关数据
-const date = new Date();
-const years = [];
-const months = [];
-const days = [];
-const hours = [];
-const minutes = [];
-//获取年
-for (let i = 2019; i <= date.getFullYear() + 5; i++) {
-  years.push("" + i);
-}
-//获取月份
-for (let i = 1; i <= 12; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  months.push("" + i);
-}
-//获取日期
-for (let i = 1; i <= 31; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  days.push("" + i);
-}
-//获取小时
-for (let i = 0; i < 24; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  hours.push("" + i);
-}
-//获取分钟
-for (let i = 0; i < 60; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  minutes.push("" + i);
-}
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    disabled: false,//设置是否能点击 false可以 true不能点击
+    placeholder: '请选择',
     schoolList: {},
     currentClass: {},
     studentList: [],
@@ -54,8 +16,6 @@ Page({
     // dateTime-picker
     startTime: '',
     endTime: '',
-    multiArray: [years, months, days, hours, minutes],
-    multiIndex: [0, 9, 16, 10, 17],
     choose_year: '',
     forContent: '',
     length: 0
@@ -68,6 +28,22 @@ Page({
     console.log(this.data.multiArray[0][0])
     this.setData({
       choose_year: this.data.multiArray[0][0]
+    })
+  },
+  // * 日历控件绑定函数 
+  // * 点击日期返回
+  // */
+  onPickerChange: function (e) {
+    console.log(e.detail);
+    this.setData({
+      startTime: e.detail.dateString
+    })
+  },
+
+  onPickerChangeEnd: function (e) {
+    console.log(e.detail);
+    this.setData({
+      endTime: e.detail.dateString
     })
   },
   //获取时间日期

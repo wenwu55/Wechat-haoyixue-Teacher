@@ -1,6 +1,6 @@
 <!--pages/homeSchool/homeSchool.wxml-->
 <view>
-  <view bindtap="homework" class="card">
+  <view bindtap="go" class="card" data-url="../homework/homework">
     <image class="titleImage" src="../../assets/homeWork.png"></image>
     <view class="right">
       <view class="title">家庭作业</view>
@@ -9,7 +9,7 @@
   </view>
 </view>
 <view>
-  <view class="card" bindtap="classNotice">
+  <view class="card" bindtap="go" data-url="../classNotice/classNotice">
     <image class="titleImage" src="../../assets/classNotice.png"></image>
     <view class="right">
       <view class="title">班级通知</view>
@@ -18,7 +18,7 @@
   </view>
 </view>
 <view>
-  <view class="card" bindtap="studentLeave" url="../studentLeave/studentLeave">
+  <view class="card" bindtap="go" data-url="../studentLeave/studentLeave">
     <image class="titleImage" src="../../assets/studentLeave.png"></image>
     <view class="right">
       <view class="title">学生请假</view>
@@ -27,10 +27,10 @@
   </view>
 </view>
 <view>
-  <view class="card" bindtap="accessControl" url="../accessControl/accessControl">
+  <view class="card" bindtap="go" data-url="../statistics/statistics">
     <image class="titleImage" src="../../assets/accessControl.png"></image>
     <view class="right">
-      <view class="title">门禁列表</view>
+      <view class="title">门禁统计</view>
       <view class="english">Access control record</view>
     </view>
   </view>

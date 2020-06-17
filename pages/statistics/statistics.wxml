@@ -1,0 +1,67 @@
+<!--pages/statistics/statistics.wxml-->
+  <view class="mycell" id="navbar">
+    <view class="babel">班级：</view>
+    <picker bindchange="pickClassChange" value="{{index}}" range="{{classList}}" range-key="className">
+      <view class="chooseDate">{{currentClass ? currentClass.className : '请选择班级'}}</view>
+    </picker>
+    <view class="babel">日期：</view>
+    <picker mode="date" bindchange="pickDateChange" start="2020-01-01" end="{{today}}" value="{{selectDate}}">
+      <view class="chooseDate">{{selectDate ? selectDate: today}}</view>
+    </picker>
+  </view>
+
+  <view class="main" id="main">
+    <view class="imgTitle">
+      <image class="title" src="../../assets/statistics.png"></image>
+    </view>
+
+    <view class="rela">
+      <view class="containe">
+        <ec-canvas style="width:300rpx;height:300rpx;" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+      </view>
+      <view class="desc">
+        <view class="total">总人数：{{students.length}}</view>
+        <view class="item">
+          <span class="blue"></span>已刷人数<span class="span">{{studentAccess.length}}</span>
+        </view>
+        <view class="item">
+          <span class="org"></span>未刷人数<span class="span">{{studentNo.length}}</span>
+        </view>
+      </view>
+    </view> 
+  </view>
+
+  <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}" id="tabbar">
+    <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
+      <view class="nav-item {{currentTab == idx ?'active':''}}"  data-current="{{idx}}" bindtap="switchNav">{{navItem.text}}</view>
+    </block>        
+  </scroll-view>
+
+  <wxs module="fn">
+      module.exports = {
+          substring: function(str){
+            return str.substring(str.length-2);
+          }
+      }
+  </wxs>
+  <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height: {{scrollViewHeight}}px">        
+    <swiper-item wx:key="0" class="tab-content">
+      <view class="card" wx:for="{{studentAccess}}" wx:key="{{index}}" bindtap="goDetail" data-date="{{item.dateTime}}" data-name="{{item.realName}}">
+         <view class="nameBox">{{fn.substring(item.realName)}}</view>
+         <view class="info">
+            <view class="name">{{item.realName}}</view>
+            <view class="time">刷卡时间：{{item.dateTime}}</view>
+         </view>
+         <view class="right">></view>
+      </view>
+    </swiper-item>
+    <swiper-item wx:key="1" class="tab-content">
+      <view class="card" wx:for="{{studentNo}}" wx:key="{{index}}" >
+        <view class="nameBox">{{fn.substring(item.realName)}}</view>
+          <view class="info">
+              <view class="name">{{item.realName}}</view>
+          </view>
+      </view>
+    </swiper-item>
+  </swiper>
+

@@ -3,7 +3,6 @@ export const completeFetchData = ({
   data,
   keyMap = []
 }) => {
-  console.log(Object.prototype.toString.call(data))
   if (Object.prototype.toString.call(data) !== '[object Object]') {
     throw new Error('data is not an Object')
   }

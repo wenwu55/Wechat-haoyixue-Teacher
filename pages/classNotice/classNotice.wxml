@@ -1,7 +1,7 @@
 <!--pages/schoolNotice/schoolNotice.wxml-->
-<view wx:if="{{noticeList.length > 0}}">
+<view wx:if="{{noticeList.length > 0}}" style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">
   <view class="card" wx:for="{{noticeList}}" wx:key="{{index}}" data-title="{{item.title}}" data-createtime="{{item.createtime}}" 
- data-content="{{item.content}}" bindtap="viewDetail">
+ data-content="{{item.content}}" data-pics="{{item.imgUrl}}" bindtap="viewDetail">
     <view class="main">
       <view class="title">{{item.title}}</view>
       <view class="date">{{item.createtime}}</view>
@@ -15,5 +15,5 @@
   <view class="text">哎呀~还没有数据耶</view>
 </view>
 
-<button class="addBtn" bindtap="addNotice">新增通知</button>
+<button class="addBtn" bindtap="addNotice" style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">新增通知</button>
 

@@ -28,19 +28,19 @@
 <view class="card" wx:if="{{attendanceList.departName}}">
   <view class="head">{{attendanceList.departName}}</view>
   <view class="main">
-    <view><text class="text">学生人数：</text>{{attendanceList.stuNum || 0}}</view>
-    <view><text class="text">实到人数：</text>{{attendanceList.actualNum || 0}}</view>
-    <view><text class="text">总出勤率：</text>{{attendanceList.attendanceRate || 0}}%</view>
+    <view class="view">
+      学生人数：<text class="text">{{attendanceList.stuNum || 0}}</text></view>
+    <view class="view">
+      实到人数：<text class="text">{{attendanceList.actualNum || 0}}</text></view>
+    <view class="view">
+      总出勤率：<text class="text">{{attendanceList.attendanceRate || 0}}%</text></view>
   </view>
   <view class="main">
-    <view><text class="text">走读人数：</text>{{attendanceList.attendNum || 0}}</view>
-    <view><text class="text">实到走读：</text>{{attendanceList.actualAttendNum || 0}}</view>
-    <view><text class="text">走读出勤率：</text>{{attendanceList.attendRate || 0}}%</view>
+    <view class="view">
+      走读人数：<text class="text">{{attendanceList.attendNum || 0}}</text></view>
+    <view class="view">
+      实到走读：<text class="text">{{attendanceList.actualAttendNum || 0}}</text></view>
+    <view  class="view">
+      走读出勤率：<text class="text">{{attendanceList.attendRate || 0}}%</text></view>
   </view>
-</view>
-
-<view class="default" wx:if="{{!attendanceList.departName}}">
-  <image class="nothing" src="../../assets/nothing.png"></image>
-  <view class="text">哎呀~还没有数据耶</view>
-  <view class="text">请选择班级后进行查询</view>
 </view>

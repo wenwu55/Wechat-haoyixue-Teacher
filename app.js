@@ -12,6 +12,17 @@ App({
       wx.request({...config})
     }
     const that = this
+    // 获取手机型号
+    wx.getSystemInfo({
+      success: res => {
+        let modelmes = res.model;
+        console.log(modelmes)
+        if (modelmes.search('iPhone X') != -1) {
+          that.globalData.isIphoneX = true
+        }
+        wx.setStorageSync('modelmes', modelmes)
+      }
+    })
     // 登录
     wx.checkSession({
       complete(e) {
@@ -90,9 +101,10 @@ App({
     })
   },
   globalData: {
+    isIphoneX: false,
     userInfo: null,
     // URL: 'http://192.168.0.7:9666/'
-    // URL: 'https://duchengedu.com/wechatHyx/'
-    URL: 'http://192.168.0.176:9666/'
+    URL: 'https://duchengedu.com/wechatHyx/'
+    // URL: 'http://192.168.0.176:9666/'
   }
 })

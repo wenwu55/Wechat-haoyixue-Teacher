@@ -13,7 +13,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    let isIphoneX = app.globalData.isIphoneX;
+    that.setData({
+      isIphoneX: isIphoneX
+    })
   },
 
   querySchoolNotice: function () {
@@ -49,7 +53,7 @@ Page({
   viewDetail: function (e) {
     const dataset = e.currentTarget.dataset
     wx.navigateTo({
-      url: `../noticeDetail/noticeDetail?title=${dataset.title}&content=${dataset.content}`,
+      url: `../noticeDetail/noticeDetail?title=${dataset.title}&createtime=${dataset.createtime}&content=${dataset.content}&pics=${dataset.pics}`,
     })
   },
 

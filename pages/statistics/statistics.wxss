@@ -1,0 +1,188 @@
+/* pages/statistics/statistics.wxss */
+page {
+  background-color: #F4F5F9;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mycell {
+  display: flex;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.babel {
+  width: 100rpx;
+  font-size: 28rpx;
+  color: #333333;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.value {
+  background-color: #fff;
+  width: 600rpx;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.conant {
+  line-height: 80rpx;
+  text-align: center;
+  width: 78rpx;
+}
+.chooseDate {
+  width: 250rpx;
+  background-color: #fff;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 12rpx;
+}
+
+.main {
+  background-color: #fff;
+}
+
+.imgTitle {
+  text-align: center;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+}
+
+.title {
+  width: 248rpx;
+  height: 37rpx;
+}
+
+.rela {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+
+.containe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+.desc {
+  width: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.total {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.item {
+  color: #999;
+  font-size: 28rpx;
+  height: 40rpx;
+  margin-top: 29rpx;
+  line-height: 40rpx;
+}
+
+.blue {
+  display: inline-block;
+  width:30rpx;
+  height:30rpx;
+  background:rgba(80,142,249,1);
+  margin-right: 16rpx;
+}
+
+.org {
+  display: inline-block;
+  width:30rpx;
+  height:30rpx;
+  margin-right: 16rpx;
+  background:#FCE153;
+}
+
+.span {
+  font-size: 32rpx;
+  color: #333;
+  margin-left: 36rpx;
+}
+
+.nav {
+  height: 92rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 88rpx;
+  background: #fff;
+  font-size: 30rpx;
+  white-space: nowrap;
+  color: #999999;
+  z-index: 99;
+  margin: 10rpx 0;
+}
+.nav-item {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+}
+.nav-item.active{
+  font-weight: 600;
+  color: #4B87FF;
+  border-bottom: 4rpx solid #4B87FF;
+}
+.tab-box{
+  height: auto;
+  background: #F4F5F9;
+  box-sizing: border-box;
+}
+.tab-content{
+  overflow-y: scroll;
+}
+
+.card {
+  background-color: #fff;
+  border-bottom: 1rpx solid #f4f4f4;
+  display: flex;
+  padding: 24rpx;
+  height: 80rpx;
+}
+
+.nameBox {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50%;
+  border: 1rpx solid #4B87FF;
+  color: #4B87FF;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.info {
+  margin-left: 24rpx;
+}
+.name {
+  font-size: 30rpx;
+  color: 30rpx;
+  line-height: 42rpx;
+}
+
+.time {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 37rpx;
+}
+
+.right {
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: #999;
+  text-align: right;
+  flex: 1;
+}

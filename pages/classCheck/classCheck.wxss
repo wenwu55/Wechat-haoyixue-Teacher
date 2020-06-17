@@ -67,18 +67,18 @@ page {
   justify-content: space-between;
   line-height: 54rpx;
   text-align: left;
-  color: #333;
-  font-weight: 600;
+  color: #999;
+}
+
+.view {
+  text-align: left;
+  flex: 1;
 }
 
 .text {
   display: inline-block;
-  width: 156rpx;
-  color: #999;
-  font-size: 26rpx;
-  text-justify:distribute-all-lines;/*ie6-8*/
-  text-align-last:justify;/* ie9*/
-  -moz-text-align-last:justify;/*ff*/
-  -webkit-text-align-last:justify;/*chrome 20+*/
+  color: #333;
+  font-weight: 600;
+  font-size: 24rpx;
   line-height: 50rpx;
 }

@@ -1,5 +1,5 @@
 <!--pages/accessControl/accessControl.wxml-->
-<view class="header">
+<!-- <view class="header">
   <view class="dateView">
     <view class="section">
       <text>开始时间:</text>
@@ -39,14 +39,14 @@
       </picker>
     </view>
   </view>
-</view>
+</view> -->
 <view class="main">
   <view class="detail" wx:if="{{accessList.length > 0}}" wx:for="{{accessList}}" wx:key="{{index}}">
     <image wx:if="{{item.picPath}}" src="{{item.picPath}}" class="photo"></image>
     <image wx:if="{{!item.picPath}}" src="../../assets/nopictrue.png" class="photo"></image>
     <view class="weui-flex">
       <view class="weui-flex__item name">{{item.orgName}}</view>
-      <view class="weui-flex__item name textRight">{{item.consumerName}}
+      <view class="weui-flex__item name textRight">{{item.departName}}{{item.consumerName}}
         <image class="inOut" src="{{item.status == 10 ? '../../assets/in.png': '../../assets/out.png'}}"></image>
       </view>
     </view>
@@ -63,10 +63,8 @@
   </view>
 </view>
 
-
-
-<view class="default" wx:if="{{accessList.length == 0}}">
+<!-- <view class="default" wx:if="{{accessList.length == 0}}">
   <image class="nothing" src="../../assets/nothing.png"></image>
   <view class="text">哎呀~还没有数据耶</view>
   <view class="text">请切换时间或学生重试</view>
-</view>
+</view> -->

@@ -11,7 +11,10 @@ Page({
     title: '',
     content: '',
     length: 0,
-    type: ''
+    type: '',
+    // 上传图片相关
+    files: [],
+    imgUrls: []
   },
 
   /**
@@ -20,10 +23,77 @@ Page({
   onLoad: function (options) {
     const type = options.type
     this.setData({
+      selectFile: this.selectFile.bind(this),
+      uplaodFile: this.uplaodFile.bind(this),
       type: type
     })
   },
-
+  chooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.setData({
+          files: that.data.files.concat(res.tempFilePaths)
+        });
+      }
+    })
+  },
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.files // 需要预览的图片http链接列表
+    })
+  },
+  selectFile(files) {
+    console.log('files', files)
+    // 返回false可以阻止某次文件上传
+  },
+  uplaodFile(files) {
+    console.log('upload files', files)
+    // 文件上传的函数，返回一个promise
+    console.log(files.contents[0])
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: `${app.globalData.URL}web/upload/uploadImg?filedir=classNotice%2F`,
+        filePath: files.tempFilePaths[0],
+        header: { 'Content-Type': 'multipart/form-data' },
+        name: 'file',
+        success: function (res) {
+          const data = JSON.parse(res.data)
+          console.log(data)
+          resolve({ urls: [data.data.data] })
+        }
+      })
+    })
+  },
+  // 删除图片
+  uploadDelete(e) {
+    console.log(e.detail.index)
+    const that = this
+    const img = that.data.imgUrls.splice(e.detail.index, 1)
+    that.setData({
+      imgUrls: img
+    })
+  },
+  uploadError(e) {
+    console.log('upload error', e.detail)
+    wx.showToast({
+      title: e.detail.error,
+      icon: 'none'
+    })
+  },
+  uploadSuccess(e) {
+    const that = this
+    console.log('upload success', e.detail)
+    const files = that.data.imgUrls.concat(e.detail.urls)
+    console.log(files)
+    that.setData({
+      imgUrls: files
+    })
+  },
   // 获取班级列表
   getClassList: function () {
     const that = this
@@ -108,13 +178,23 @@ Page({
       })
       return false
     }
+    // 处理图片列表
+    let pics = ''
+    if (that.data.imgUrls.length == 0) {
+      pics = ''
+    } else if (that.data.imgUrls.length == 1) {
+      pics = that.data.imgUrls[0]
+    } else {
+      pics = that.data.imgUrls.join(',')
+    }
     const userId = wx.getStorageSync('userId')
     const orgno = wx.getStorageSync('orgno')
     const param = {
       clazz: that.data.currentClass.className,
       title: that.data.title,
       content: that.data.content,
-      senderid: userId
+      senderid: userId,
+      imgUrl: pics
     }
 
     if (that.data.type == 2) {

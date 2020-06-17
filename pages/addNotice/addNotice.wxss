@@ -1,6 +1,7 @@
 /* pages/addNotice/addNotice.wxss */
 page {
   padding-top: 17rpx;
+  box-sizing: border-box;
   padding-bottom: 20rpx;
 }
 .weui-cell {

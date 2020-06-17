@@ -1,5 +1,5 @@
 <!--pages/homework/homework.wxml-->
-<view class="container">
+<view class="container" style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">
   <!-- tab导航栏 -->
   <!-- scroll-left属性可以控制滚动条位置 -->
   <!-- scroll-with-animation滚动添加动画过渡 -->
@@ -11,7 +11,7 @@
   <!-- 页面内容 -->
   <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab">        
     <swiper-item wx:for="{{[0,1,2,3,4,5,6,7,8,9]}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" class="tab-content">
-      <view class="card" wx:if="{{workList.length > 0}}" wx:for="{{workList}}" wx:key="{{index}}" bindtap="goDetail" data-title="{{item.title}}" data-createTime="{{item.createTime}}" data-pics="{{item.pics}}" data-content="{{item.content}}">
+      <view class="card" wx:if="{{workList.length > 0}}" wx:for="{{workList}}" wx:key="index" bindtap="goDetail" data-title="{{item.title}}" data-createTime="{{item.createTime}}" data-pics="{{item.pics}}" data-content="{{item.content}}" data-cur="{{currentTab}}">
         <view class="head">
           <view class="title">{{item.clazz}}{{item.title ? item.title : ''}}</view>
           <view class="time">{{item.createTime ? item.createTime : ''}}</view>
@@ -27,4 +27,4 @@
   </swiper>
 </view>
 
-<button class="addBtn" bindtap="addHomework">新增作业</button>
+<button class="addBtn" bindtap="addHomework" style="margin-bottom: {{isIphoneX ? '50rpx' : '0rpx'}};">新增作业</button>
